@@ -37,6 +37,10 @@ public class Main {
                         isPlay = false;//Игра завершается
                         break;
                     }
+                    default: {
+                        System.out.println("Неправильная команда");
+                        break;
+                    }
                 }
             }
         }
