@@ -16,10 +16,11 @@ public class Player extends Character {
 
     @Override
     public void attack(Character character, int damage) {
-        System.out.println(this.getName() + " атакует монстра");
+        //System.out.println(this.getName() + " атакует монстра");
         if (character.getHealthPoint() > damage) {
             character.setHealthPoint(character.getHealthPoint() - damage);
-            System.out.println(this.getName() + " наносит удар в " + damage + " единиц! ");
+            if (damage>0) System.out.println(this.getName() + " наносит удар в " + damage + " единиц! (Здоровье " + this.getHealthPoint() + ")");
+            else System.out.println(this.getName() + " промахивается (Здоровье " + this.getHealthPoint() + ")");
         } else {
             character.setHealthPoint(0);
             System.out.println("УРА!!!");

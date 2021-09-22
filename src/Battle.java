@@ -31,6 +31,11 @@ public class Battle implements Runnable {
         System.out.println("Вошли в лес.\nВам встретился монстр.");
         System.out.println(monster);
         System.out.println("______________________");
+        try {
+            thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thread.start();
     }
 
@@ -53,7 +58,7 @@ public class Battle implements Runnable {
             if (player.getHealthPoint() > 0) {
                 player.attack(monster, randomDamage(player));
                 try {
-                    thread.sleep(300);
+                    thread.sleep(400);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -77,7 +82,7 @@ public class Battle implements Runnable {
             if (monster.getHealthPoint() > 0) {
                 monster.attack(player, randomDamage(monster));
                 try {
-                    thread.sleep(300);
+                    thread.sleep(400);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

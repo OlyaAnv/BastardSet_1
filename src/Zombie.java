@@ -6,10 +6,12 @@ public class Zombie extends Monster {
 
 
     public void attack(Character character, int damage) {
-        System.out.println("Зомби атакует " + character.getName());
+        //System.out.println("Зомби атакует ");
         if (character.getHealthPoint() > damage) {
             character.setHealthPoint(character.getHealthPoint() - damage);
-            System.out.println(this.getName() + " наносит удар в " + damage + " единиц! ");
+            if (damage>0) System.out.println(this.getName() + " атакует и наносит удар в " + damage + " единиц! (Здоровье " +  this.getName() + " " + this.getHealthPoint() + ")");
+            else System.out.println(this.getName() + " промахивается (Здоровье " + this.getName() + " " + this.getHealthPoint() + ")");
+            System.out.println("");
         } else {character.setHealthPoint(0);
             System.out.println("УУУУУУ!");}
     }
