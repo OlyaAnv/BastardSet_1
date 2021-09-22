@@ -42,6 +42,10 @@ public class Bench {
                     isBench = false;//Завершаем бесконечный цикл диалога с игроком
                     break;
                 }
+                default: {
+                    System.out.println("Неправильная команда");
+                    break;
+                }
             }
         }
         player.playerInfo();
