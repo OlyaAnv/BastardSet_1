@@ -1,30 +1,32 @@
 import java.util.Random;
 
-public class Battle implements Runnable{
+public class Battle implements Runnable {
     Player player;
     Monster monster;
     Random random;
     Thread thread;
 
+    public Thread getThread() {
+        return thread;
+    }
+
     public Battle(Player player) {
         this.player = player;
         random = new Random();
-        thread = new Thread(this,"Поток битвы");
-        if(player.getExpirience()>=200){
+        thread = new Thread(this, "Поток битвы");
+        if (player.getExpirience() >= 200) {
             monster = new Zombie("зомби", 100, 1, 3, 0);
-        }
-        else if(player.getExpirience()>=100){
+        } else if (player.getExpirience() >= 100) {
             if (random.nextInt(100) > 50) monster = new Hog("кабан", 100, 13, 15, 0);
             else monster = new Zombie("зомби", 100, 9, 20, 0);
-        }
-        else if(player.getExpirience()<100) {
+        } else if (player.getExpirience() < 100) {
             if (random.nextInt(100) > 50) monster = new Hog("кабан", 100, 11, 15, 0);
             else monster = new Zombie("зомби", 100, 7, 20, 0);
         }
         battleStart();
     }
 
-    public void battleStart()  {
+    public void battleStart() {
         player.playerInfo();
         System.out.println("Вошли в лес.\nВам встретился монстр.");
         System.out.println(monster);
@@ -46,6 +48,7 @@ public class Battle implements Runnable{
 
     @Override
     public void run() {
+
         while (true) {
             if (player.getHealthPoint() > 0) {
                 player.attack(monster, randomDamage(player));
@@ -64,9 +67,10 @@ public class Battle implements Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if((player.getExpirience()>100) && (player.isPrise()==0)) {
+                if ((player.getExpirience() > 100) && (player.isPrise() == 0)) {
                     System.out.println("Вы набрали 100 очков! Приз ждет в лавке торговца");
-                    player.setPrise(1);}
+                    player.setPrise(1);
+                }
                 win();
                 break;
             }
@@ -91,3 +95,4 @@ public class Battle implements Runnable{
 
     }
 }
+

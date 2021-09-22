@@ -16,10 +16,14 @@ public class Player extends Character {
 
     @Override
     public void attack(Character character, int damage) {
-        System.out.println("Игрок атакует монстра");
-        if(character.getHealthPoint() > damage)
+        System.out.println(this.getName() + " атакует монстра");
+        if (character.getHealthPoint() > damage) {
             character.setHealthPoint(character.getHealthPoint() - damage);
-        else character.setHealthPoint(0);
+            System.out.println(this.getName() + " наносит удар в " + damage + " единиц! ");
+        } else {
+            character.setHealthPoint(0);
+            System.out.println("УРА!!!");
+        }
 
     }
 
@@ -28,12 +32,12 @@ public class Player extends Character {
     }
 
 
-//Вывод на экран параметров игрока
+    //Вывод на экран параметров игрока
     public void playerInfo() {
         System.out.println("Справа вверху на экране ----> " + this.getName() + " (Здоровье - " + this.getHealthPoint() + ", Деньги - " + this.getMoney() + " монет, Опыт - " + this.getExpirience() + ")");
     }
 
-//Покупка товаров по заданной цене price, возвращает true если хватило денег для покупки товара obj
+    //Покупка товаров по заданной цене price, возвращает true если хватило денег для покупки товара obj
     public boolean buyItem(int price, Object obj) {
         int money = this.getMoney();
         if (money >= price) {
@@ -49,10 +53,11 @@ public class Player extends Character {
             return false;
         }
     }
-    public void drinkDrug(){
-        if(bag!=null) {
-            int health = (int) bag.get(bag.size()-1);
-            if ((this.getHealthPoint() + health)<MAX_HEALTH)
+
+    public void drinkDrug() {
+        if (bag != null) {
+            int health = (int) bag.get(bag.size() - 1);
+            if ((this.getHealthPoint() + health) < MAX_HEALTH)
                 this.setHealthPoint((this.getHealthPoint() + health));
             else this.setHealthPoint(MAX_HEALTH);
         }

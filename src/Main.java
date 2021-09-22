@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //Приветствуем игрока, объясняем правила и создаем игрового персонажа
         System.out.println();
@@ -15,7 +15,7 @@ public class Main {
     }
 
     //Главная сцена игры
-        public static void mainScene(Player player) {
+        public static void mainScene(Player player) throws InterruptedException {
             player.playerInfo(); //Выводим на экран показатели игрока
             boolean isPlay = true; //Флаг, влияющий на завершение игры
             Scanner scan = new Scanner(System.in);
@@ -28,7 +28,8 @@ public class Main {
                         break;
                     }
                     case 2: {
-                        new Battle(player);//Игрок переходит в сцену со сражением
+                        Battle battle = new Battle(player);//Игрок переходит в сцену со сражением
+                        battle.getThread().join();
                         if (player.getHealthPoint() == 0) isPlay = false;
                         break;
                     }
